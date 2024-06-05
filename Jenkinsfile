@@ -76,7 +76,4 @@ pipeline {
             }
         }
     }
-
-    post {
-    }
 }
