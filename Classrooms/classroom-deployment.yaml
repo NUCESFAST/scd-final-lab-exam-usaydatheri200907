@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classrooms-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: classrooms
+  template:
+    metadata:
+      labels:
+        app: classrooms
+    spec:
+      containers:
+      - name: classrooms-container
+        image: your_dockerhub_username/classrooms-image:tag
+        ports:
+        - containerPort: 8080
