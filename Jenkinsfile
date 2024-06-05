@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('jenkins_token') // Replace with your Docker Hub credentials ID
         DOCKERHUB_REPO = 'usaydather/0907_myapp' // Replace with your Docker Hub repository
         GITHUB_PAT = credentials('github-pat') // Replace with your GitHub PAT credentials ID
-
+        DOCKER_BINARY = '"C:\Program Files\Docker\Docker\resources\bin\docker.exe"' // Specify the full path to Docker executable
     }
 
     stages {
