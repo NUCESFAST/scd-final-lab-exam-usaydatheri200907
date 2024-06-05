@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./client
+    ports:
+      - "907:5000"
+    depends_on:
+      - auth
+      - classrooms
+      - event-bus
+      - post
+
+  auth:
+    build: ./auth
+    ports:
+      - "2907:4000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/ClassroomMS
+    depends_on:
+      - mongo
+
+  classrooms:
+    build: ./classrooms
+    ports:
+      - "2908:4001"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/ClassroomMS
+    depends_on:
+      - mongo
+
+  event-bus:
+    build: ./event-bus
+    ports:
+      - "2909:4009"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/ClassroomMS
+    depends_on:
+      - mongo
+
+  post:
+    build: ./post
+    ports:
+      - "2910:4010"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/ClassroomMS
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.2
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

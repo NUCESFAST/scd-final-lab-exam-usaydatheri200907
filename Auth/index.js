@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-var url = 'mongodb://localhost:27017/';
+var url = process.env.MONGO_URL || 'mongodb://localhost:27017/';
 
 app.post('/signup', async (req, res) => {
     const id = randomBytes(4).toString('hex');
