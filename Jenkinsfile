@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/your-github-repo.git' // Replace with your GitHub repository URL
+                git 'https://github.com/NUCESFAST/scd-final-lab-exam-usaydatheri200907' // Replace with your GitHub repository URL
             }
         }
         
