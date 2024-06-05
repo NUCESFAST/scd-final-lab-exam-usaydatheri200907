@@ -20,40 +20,40 @@ pipeline {
                 stage('Build Frontend Image') {
                     steps {
                         script {
-                            def frontendImage = docker.build("${env.DOCKERHUB_REPO}:frontend-${env.BUILD_ID}", "client")
-                            frontendImage.push()
+                            def frontendImage = sh(script: "${DOCKER_BINARY} build -t ${env.DOCKERHUB_REPO}:frontend-${env.BUILD_ID} client", returnStdout: true).trim()
+                            sh "${DOCKER_BINARY} push ${frontendImage}"
                         }
                     }
                 }
                 stage('Build Auth Image') {
                     steps {
                         script {
-                            def authImage = docker.build("${env.DOCKERHUB_REPO}:auth-${env.BUILD_ID}", "auth")
-                            authImage.push()
+                            def authImage = sh(script: "${DOCKER_BINARY} build -t ${env.DOCKERHUB_REPO}:auth-${env.BUILD_ID} auth", returnStdout: true).trim()
+                            sh "${DOCKER_BINARY} push ${authImage}"
                         }
                     }
                 }
                 stage('Build Classrooms Image') {
                     steps {
                         script {
-                            def classroomsImage = docker.build("${env.DOCKERHUB_REPO}:classrooms-${env.BUILD_ID}", "classrooms")
-                            classroomsImage.push()
+                            def classroomsImage = sh(script: "${DOCKER_BINARY} build -t ${env.DOCKERHUB_REPO}:classrooms-${env.BUILD_ID} classrooms", returnStdout: true).trim()
+                            sh "${DOCKER_BINARY} push ${classroomsImage}"
                         }
                     }
                 }
                 stage('Build Event-Bus Image') {
                     steps {
                         script {
-                            def eventBusImage = docker.build("${env.DOCKERHUB_REPO}:event-bus-${env.BUILD_ID}", "event-bus")
-                            eventBusImage.push()
+                            def eventBusImage = sh(script: "${DOCKER_BINARY} build -t ${env.DOCKERHUB_REPO}:event-bus-${env.BUILD_ID} event-bus", returnStdout: true).trim()
+                            sh "${DOCKER_BINARY} push ${eventBusImage}"
                         }
                     }
                 }
                 stage('Build Posts Image') {
                     steps {
                         script {
-                            def postsImage = docker.build("${env.DOCKERHUB_REPO}:posts-${env.BUILD_ID}", "posts")
-                            postsImage.push()
+                            def postsImage = sh(script: "${DOCKER_BINARY} build -t ${env.DOCKERHUB_REPO}:posts-${env.BUILD_ID} posts", returnStdout: true).trim()
+                            sh "${DOCKER_BINARY} push ${postsImage}"
                         }
                     }
                 }
